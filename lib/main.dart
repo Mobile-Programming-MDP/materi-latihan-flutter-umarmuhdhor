@@ -10,10 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Umar Muhdhor",
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: firstScreen()
-    );
+        title: "Umar Muhdhor",
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: firstScreen());
   }
 }
 
@@ -23,12 +22,24 @@ class firstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Umar Ganteng"),
+      appBar: AppBar(
+        title: const Text("Umar Ganteng"),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ))
+        ],
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.home, color: Colors.white),
         ),
-        body: const Center(
-          child: Text("Halo Umar"),
-        ),
+      ),
+      body: const Center(
+        child: Text("Halo Umar"),
+      ),
     );
   }
 }
