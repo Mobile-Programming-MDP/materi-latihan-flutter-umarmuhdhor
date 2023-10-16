@@ -1,0 +1,10 @@
+G:/flutter/TugasPAB1/tes1/flutter_application_2/build/windows/CMakeFiles/INSTALL.dir
+G:/flutter/TugasPAB1/tes1/flutter_application_2/build/windows/CMakeFiles/ALL_BUILD.dir
+G:/flutter/TugasPAB1/tes1/flutter_application_2/build/windows/CMakeFiles/ZERO_CHECK.dir
+G:/flutter/TugasPAB1/tes1/flutter_application_2/build/windows/flutter/CMakeFiles/flutter_wrapper_plugin.dir
+G:/flutter/TugasPAB1/tes1/flutter_application_2/build/windows/flutter/CMakeFiles/flutter_wrapper_app.dir
+G:/flutter/TugasPAB1/tes1/flutter_application_2/build/windows/flutter/CMakeFiles/flutter_assemble.dir
+G:/flutter/TugasPAB1/tes1/flutter_application_2/build/windows/flutter/CMakeFiles/INSTALL.dir
+G:/flutter/TugasPAB1/tes1/flutter_application_2/build/windows/runner/CMakeFiles/flutter_application_2.dir
+G:/flutter/TugasPAB1/tes1/flutter_application_2/build/windows/runner/CMakeFiles/INSTALL.dir
+G:/flutter/TugasPAB1/tes1/flutter_application_2/build/windows/runner/CMakeFiles/ALL_BUILD.dir
