@@ -1,6 +1,7 @@
 import 'package:apk_wisata/data/candi_data.dart';
 // import 'package:apk_wisata/screens/detail_screen.dart';
 import 'package:apk_wisata/screens/profile_screen.dart';
+import 'package:apk_wisata/screens/search_screen.dart';
 import 'package:apk_wisata/screens/sign_in.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true
       ),
       // home : DetailScreen(candi : candiList[0])
-      home: SignInScrenn(),
+      home: SearchScreen(),
     );
   }
 
