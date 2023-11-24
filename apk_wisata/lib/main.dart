@@ -1,115 +1,93 @@
 import 'package:flutter/material.dart';
-import 'package:apk_wisata/screens/favorite_screen.dart';
-import 'package:apk_wisata/screens/homeScreen.dart';
-// import 'package:wisata_candi/data/candi_data.dart';
-// import 'package:wisata_candi/screens/detail_screen.dart';
-import 'package:apk_wisata/screens/profile_screen.dart';
-import 'package:apk_wisata/screens/search_screen.dart';
-// import 'package:wisata_candi/screens/SignInScreen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Wisata Candi',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          iconTheme: IconThemeData(color: Colors.deepPurple),
-          titleTextStyle: TextStyle(
-            color: Colors.deepPurple,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Colors.deepPurple).copyWith(
-          primary: Colors.deepPurple,
-          surface: Colors.deepPurple[50],
-        ),
-        useMaterial3: true,
-      ),
-//home: HomeScreen(),
-//home: const SearchScreen(),
-//home: SignInScreen(),
-//home: DetailScreen(candi: candiList[0]),
-      home: MainScreen(),
+    return const MaterialApp(
+      title: 'User Input',
+      home: MyInputPage(),
     );
   }
 }
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
+class MyInputPage extends StatefulWidget {
+  const MyInputPage({Key? key}) : super(key: key);
   @override
-  State createState() => _MainScreenState();
+  State<MyInputPage> createState() => _MyInputPageState();
 }
 
-class _MainScreenState extends State {
-//TOD: 1 Deklarasikan variabel
-  int _currentIndex = 0;
-  final List _children = [
-    HomeScreen(),
-    SearchScreen(),
-    FavoriteScreen(),
-    ProfileScreen(),
-  ];
+class _MyInputPageState extends State<MyInputPage> {
+  final TextEditingController _controller = TextEditingController();
+  bool _isValid = true;
+  String inputValue = '';
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _validateUserInput() {
+    inputValue = _controller.text.trim();
+    RegExp alphabetic = RegExp(r'^[a-zA-Z]+$');
+    setState(() {
+      if (inputValue.isEmpty || !alphabetic.hasMatch(inputValue)) {
+        _isValid = false;
+      } else {
+        _isValid = true;
+        print('Masukan pengguna: $inputValue');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//TODO: 2 Buat properti body berupa widget yang ditampilkan
-      body: _children[_currentIndex],
-//TODO: 3 Buat properti bottonNavigationBar dengan nilai Theme
-      bottomNavigationBar: Theme(
-//TODO: 4 Buat data dan child dari Theme
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.deepPurple[50],
-        ),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: Colors.deepPurple,
+      appBar: AppBar(
+        title: const Text('User Input'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                labelText: 'Masukkan Teks',
+                errorText:
+                    _isValid ? null : 'Hanya huruf alfabet diperbolehkan',
+                suffixIcon: _controller.text.isNotEmpty
+                    ? IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _controller.clear();
+                          });
+                        },
+                        icon: const Icon(Icons.clear),
+                      )
+                    : null,
               ),
-              label: 'Home',
+              onChanged: (value) {
+                setState(() {
+                  inputValue = value;
+                });
+              },
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.search,
-                color: Colors.deepPurple,
-              ),
-              label: 'Seacrh',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.favorite,
-                color: Colors.deepPurple,
-              ),
-              label: 'Favorite',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: Colors.deepPurple,
-              ),
-              label: 'Person',
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                _validateUserInput();
+              },
+              child: const Text('Kirim'),
             ),
           ],
-          selectedItemColor: Colors.deepPurple,
-          unselectedItemColor: Colors.deepPurple[100],
-          showUnselectedLabels: true,
         ),
       ),
     );
